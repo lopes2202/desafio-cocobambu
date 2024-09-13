@@ -8,7 +8,7 @@ import { map } from 'rxjs';
 })
 export class GoogleLivrosService {
   url: string = "https://www.googleapis.com/books/v1/volumes?"
-  token: string = ''
+  token: string = 'AIzaSyA3cOHw3jsS65j7JdmGGS3HC81PU0f_nZE'
 
   constructor(private http: HttpClient) { 
 

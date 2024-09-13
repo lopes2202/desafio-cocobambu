@@ -1,24 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleLivrosService } from '../../services/google-livros.service';
 import { CommonModule } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor(private googleLivrosService: GoogleLivrosService) {
+  
+  ngOnInit(): void {
 
   }
-  ngOnInit(): void {
-    this.googleLivrosService.getLivros().subscribe({
-      next: (response) => {
-        console.log(response);
-      }
-    })
-  }
+
 
 }
+
