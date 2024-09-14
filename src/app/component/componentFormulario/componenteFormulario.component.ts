@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { Livro } from '../../models/livro';
 import { CommonModule } from '@angular/common';
 import { GoogleLivrosService } from '../../services/google-livros.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-firstcomponent',
@@ -11,13 +12,26 @@ import { GoogleLivrosService } from '../../services/google-livros.service';
   templateUrl: './componenteFormulario.component.html',
   styleUrl: './componenteFormulario.component.css'
 })
-export class FirstcomponentComponent {
+export class FirstcomponentComponent implements OnInit{
 
-  constructor(private googleLivrosService: GoogleLivrosService) {}
+  private livroSelecionado = '';
+
+  constructor(private googleLivrosService: GoogleLivrosService, private router: Router) {
+  }
+
+  ngOnInit(): void {
+      if(!localStorage.getItem('jwt_token')){
+        this.router.navigate(['/', 'login'])
+      }
+  }
 
   formulario = new FormGroup({
     livroNome: new FormControl('', [Validators.required]),
     livroAutor: new FormControl('', [Validators.required])
+  })
+
+  formularioFavoritar = new FormGroup({
+
   })
 
   vetor:Livro[] = [];
@@ -44,5 +58,29 @@ export class FirstcomponentComponent {
     });
 
   }
+
+  @ViewChild('modal') private modal?: ElementRef<HTMLDialogElement>
+
+  private get modalElement() {
+    return this.modal?.nativeElement as HTMLDialogElement;
+  }
+
+ showModal(idLivro: string){
+    this.livroSelecionado = idLivro;
+    this.modalElement.showModal();
+  }
+
+  closeModal(){
+    this.modalElement.close();
+    this.livroSelecionado = "";
+  }
+
+  favoritar() {
+    console.log("Favoritar")
+
+  }
+
+  
+
 }
 

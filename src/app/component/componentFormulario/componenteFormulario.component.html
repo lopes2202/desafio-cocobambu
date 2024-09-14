@@ -16,20 +16,51 @@
 <table class="table">
     <thead>
         <tr>
-            <th>#</th>
             <th>Capa</th>
             <th>Livro</th>
             <th>Autor</th>
             <th>Descrição</th>
+            <th>Favoritar</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let v of vetor; index as indice">
-            <td>{{indice}}</td>
             <td><img src="{{v.capaUrl}}" alt=""></td>
             <td>{{v.nomeLivro}}</td>
             <td>{{v.nomeAutor}}</td>
             <td>{{v.descricao}}</td>
-        </tr>
-    </tbody>
-</table>
+            <td><button (click)="showModal(v.id)"> 
+                Favoritar
+              </button>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            
+            <dialog #modal>
+              <form [formGroup]="formularioFavoritar">
+                <div class="star-rating">
+                  <input type="radio" id="5-stars" formControlName="nota" value="5">
+                  <label for="5-stars" title="5 stars"></label>
+            
+                  <input type="radio" id="4-stars" formControlName="nota" value="4">
+                  <label for="4-stars" title="4 stars"></label>
+            
+                  <input type="radio" id="3-stars" formControlName="nota" value="3">
+                  <label for="3-stars" title="3 stars"></label>
+            
+                  <input type="radio" id="2-stars" formControlName="nota" value="2">
+                  <label for="2-stars" title="2 stars"></label>
+            
+                  <input type="radio" id="1-star" formControlName="nota" value="1">
+                  <label for="1-star" title="1 star"></label>
+                </div>
+            
+                <textarea formControlName="notas_pessoais" placeholder="Nota Pessoal" class="form-group"></textarea>
+                
+                <input type="text" formControlName="tags" placeholder="Tags do Livro" class="form-group">
+                <button (click)="favoritar()">Enviar</button>
+                <button class='botaoFechar' (click)="closeModal()">Fechar</button>
+              </form>
+            
+            </dialog>

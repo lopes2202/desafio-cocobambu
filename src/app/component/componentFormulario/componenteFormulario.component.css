@@ -91,3 +91,119 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #ddd;
 }
+
+.star-rating {
+    direction: rtl; 
+    display: inline-flex;
+    font-size: 2em;
+    margin-top: 1em;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.star-rating label:before {
+    content: "★";
+    font-size: 30px;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: #f7c843;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f7c843;
+}
+
+button {
+    background-color: #3e0ec29f; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.botaoFechar {
+    background-color: red;
+}
+
+button:hover {
+    background-color: #FF5722; 
+    transform: scale(1.05); 
+}
+
+button:active {
+    background-color: #E64A19; 
+    transform: scale(0.98); 
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.5); 
+}
+
+
+@media (max-width: 768px) {
+    form {
+        padding: 15px;
+        margin: 20px auto;
+    }
+
+    .form-group {
+        margin-bottom: 1.2em;
+    }
+
+    input[type="button"] {
+        font-size: 1em;
+        padding: .6em 1em;
+    }
+
+    .star-rating {
+        font-size: 1.5em; 
+    }
+}
+
+
+@media (max-width: 768px) {
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); 
+}
+
+dialog {
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
