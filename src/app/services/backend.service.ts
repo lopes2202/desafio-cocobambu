@@ -34,12 +34,11 @@ export class BackendService {
     tags: Array<string>
   ) {
     return this.http.post<any>(
-      this.url + "favoritar/", {
-        id_livro: idLivro,
+      this.url + "livros-favoritados",  {
+        id_google: idLivro,
         nota: nota,
         notas_pessoais: notasPessoais,
-        tags: tags
-  
+        tags: tags 
       }
     )
 
