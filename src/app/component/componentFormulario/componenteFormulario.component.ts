@@ -31,7 +31,9 @@ export class FirstcomponentComponent implements OnInit{
   })
 
   formularioFavoritar = new FormGroup({
-
+    nota: new FormControl('nota'),
+    notas_pessoais: new FormControl('notasPessoais'),
+    tags: new FormControl('tags'),
   })
 
   vetor:Livro[] = [];
@@ -67,7 +69,11 @@ export class FirstcomponentComponent implements OnInit{
 
  showModal(idLivro: string){
     this.livroSelecionado = idLivro;
-    this.modalElement.showModal();
+    const modal: HTMLDialogElement = document.querySelector('dialog');
+    if (modal) {
+    this.formularioFavoritar.reset(); 
+    modal.showModal();
+  }
   }
 
   closeModal(){
@@ -76,8 +82,8 @@ export class FirstcomponentComponent implements OnInit{
   }
 
   favoritar() {
-    console.log("Favoritar")
-
+    console.log(this.formularioFavoritar.value)
+    this.closeModal();
   }
 
   
