@@ -15,20 +15,20 @@ import { BackendService } from '../../services/backend.service';
 })
 
 
-export class ComponenteFormulario implements OnInit{
+export class ComponenteFormulario implements OnInit {
 
   private livroSelecionado = '';
 
-  constructor(private googleLivrosService: GoogleLivrosService, private router: Router, private backendService: BackendService, 
+  constructor(private googleLivrosService: GoogleLivrosService, private router: Router, private backendService: BackendService,
   ) {
   }
 
 
 
   ngOnInit(): void {
-      if(!localStorage.getItem('jwt_token')){
-        this.router.navigate(['/', 'login'])
-      }
+    if (!localStorage.getItem('jwt_token')) {
+      this.router.navigate(['/', 'login'])
+    }
   }
 
   formulario = new FormGroup({
@@ -42,9 +42,10 @@ export class ComponenteFormulario implements OnInit{
     tags: new FormControl('tags', [Validators.required]),
   })
 
-  vetor:Livro[] = [];
+  vetor: Livro[] = [];
+  tags: Array<string> = [];
 
-  pesquisar(){
+  pesquisar() {
 
     console.log(`Realizando pesquisa para: `);
     this.googleLivrosService.getLivros(
@@ -53,7 +54,7 @@ export class ComponenteFormulario implements OnInit{
       next: (response) => {
         console.log(response);
         // {totalItems}
-        for(let item of response.items){
+        for (let item of response.items) {
           let livro = new Livro();
           livro.id = item.id
           livro.nomeLivro = item.volumeInfo.title
@@ -73,38 +74,44 @@ export class ComponenteFormulario implements OnInit{
     return this.modal?.nativeElement as HTMLDialogElement;
   }
 
- showModal(idLivro: string){
+  showModal(idLivro: string) {
     this.livroSelecionado = idLivro;
     const modal: HTMLDialogElement = document.querySelector('dialog');
     if (modal) {
-    this.formularioFavoritar.reset(); 
-    modal.showModal();
-  }
+      this.formularioFavoritar.reset();
+      this.tags = []
+      modal.showModal();
+    }
   }
 
-  closeModal(){
+  closeModal() {
     this.modalElement.close();
     this.livroSelecionado = "";
+    this.tags = [];
   }
+
 
   favoritar() {
     this.backendService.favoritarLivro(
       this.livroSelecionado,
       parseInt(this.formularioFavoritar.value.nota),
       this.formularioFavoritar.value.notas_pessoais,
-      [this.formularioFavoritar.value.tags]
+      this.tags
     ).subscribe({
-      },
+    },
     )
     this.closeModal();
-    console.log(this.formularioFavoritar.value)
   }
 
-
+  adicionarTag() {
+    if(!this.tags.includes(this.formularioFavoritar.value.tags)){
+      this.tags.push(this.formularioFavoritar.value.tags)
+    }
+  }
 }
-  
 
-  
+
+
 
 
 
