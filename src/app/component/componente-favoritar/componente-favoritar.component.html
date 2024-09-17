@@ -1,0 +1,44 @@
+<nav>
+    <ul class="navbar">
+      <li><a href="/home">Home</a></li>
+      <li><a href="/livrofavoritado">Livros Favoritos</a></li>
+    </ul>
+  </nav>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Capa</th>
+        <th>Livros Favoritados</th>
+        <th>Autor</th>
+        <th>Descrição</th>
+        <th>Nota</th>
+        <th>Notas Pessoais</th>
+        <th>Tags</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livro of vetor">
+        <td>
+          <img [src]="livro.capaUrl" [alt]="livro.nomeLivro" style="width: 100px; height: auto;" />
+        </td>
+        <td>{{ livro.nomeLivro }}</td>
+        <td>{{ livro.nomeAutor }}</td>
+        <td [innerHTML]="livro.descricao"></td>
+        
+        <td>
+          <div class="star-rating">
+            <span *ngFor="let star of [1, 2, 3, 4, 5]" class="star"
+                  [class.filled]="livro.nota >= star">★</span>
+          </div>
+        </td>
+  
+        <td>{{ livro.notasPessoais }}</td>
+        <td>{{ livro.tags }}</td>
+      </tr>
+      <tr *ngIf="vetor.length === 0">
+        <td colspan="4" style="text-align: center;">Nenhum livro favoritado encontrado.</td>
+      </tr>
+    </tbody>
+  </table>
+  

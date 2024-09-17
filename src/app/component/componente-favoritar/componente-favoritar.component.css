@@ -1,0 +1,80 @@
+nav {
+    background-color: #333;
+    padding: 1rem;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    margin: 0 1rem;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #555;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #333; /* Cor da tabela combinando com a navbar */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+.star-rating {
+    display: inline-flex;
+    direction: rtl;
+    font-size: 1.5em; /* Tamanho das estrelas */
+  }
+  
+  .star {
+    color: #ccc; /* Cor das estrelas vazias */
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .star.filled {
+    color: #f7c843; /* Cor das estrelas preenchidas */
+  }
+  
+  .star:hover,
+  .star:hover ~ .star {
+    color: #f7c843; /* Cor das estrelas ao passar o mouse por cima */
+  }
+  
