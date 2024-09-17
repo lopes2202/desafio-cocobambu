@@ -36,23 +36,34 @@ export class BackendService {
     const headers = new HttpHeaders({
       "Authorization": "Bearer " + localStorage.getItem("jwt_token")
     })
+
+    let tags_list = []
+    for(let tag of tags){
+      tags_list.push({
+        'nome': tag
+      })
+    }
+
     return this.http.post<any>(
       this.url + "livros-favoritados/",  {
         id_google: idLivro,
         nota: nota,
         notas_pessoais: notasPessoais,
-        tags: tags 
+        tags: tags_list
       }, {headers}
     )
 
   }
 
-  listarLivros(){
+  listarLivros(tag: string){
     const headers = new HttpHeaders({
       "Authorization": "Bearer " + localStorage.getItem("jwt_token")
     })
     return this.http.get<any>(
-      this.url + "livros-favoritados/" , {headers}
+      this.url + "livros-favoritados/" , {
+        headers: headers,
+        params: new HttpParams().set('tags', tag)
+      }
     )
   }
 }
