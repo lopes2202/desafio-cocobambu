@@ -10,11 +10,11 @@ Para poder rodar o projeto, é necessário clonar o repositorio "https://github.
 
 Para executar esse repositório é necessário baixar os pacotes do angular 17
 
-npm install -g @angular/cli
+```npm install -g @angular/cli```
 
 Quando instalar o angular, é necessário apenas executar o comando
 
-npm start
+```npm start```
 
 Assim iniciando o projeto e criando a URL
 https://localhost.com/4200
