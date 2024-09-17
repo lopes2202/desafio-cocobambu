@@ -4,4 +4,7 @@ export class Livro{
         nomeAutor: String;
         descricao: string;
         capaUrl: string;
+        nota: number;
+        notasPessoais: string
+        tags: Array<string>
 }
