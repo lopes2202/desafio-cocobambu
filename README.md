@@ -1,27 +1,45 @@
-# Projetococobambu
+# Biblioteca Virtual - Desafio Estágio Coco Bambu 2024
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.4.
+## Introdução
+Olá, Bem-vindo(a) à sua Biblioteca virtual, um portal completo dedicado ao mundo do cinema. Aqui você encontrará a descrição, recomendações personalizadas e tudo o que precisa saber sobre seus livros favoritos.
 
-## Development server
+## Como Usar
+Para poder usar o projeto, é necessário clonar o repositorio "https://github.com/lopes2202/backendCocoBambu", siga as instruções do readme, para conseguir utilizar o projeto.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Para executar esse repositório é necessário baixar os pacotes do angular 17
 
-## Code scaffolding
+npm install -g @angular/cli
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Quando instalar o angular, é necessário apenas executar o comando
 
-## Build
+npm start
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Assim iniciando o projeto e criando a URL
+https://localhost.com/4200
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Funcionalidades Principais
+Catálogo Extenso: Navegue por um vasto catálogo de livros, organizados por nome do filme e autor.
+Listas de Livros: Crie e compartilhe suas próprias listas de filmes, como "Meus Favoritos".
+Opção para Favoritar o Livro : Favorite o livro e adicione a nota, descreva o que você achou do livro e também pode adicionar tags para o filme.
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Tecnologias Utilizadas
+FrontEnd - 
+Angular
+TypeScript
+CSS
+BackEnd - Python
+Django
 
-## Further help
+## Contribuições
+Sinta-se à vontade para contribuir com este projeto! Você pode:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Relatar bugs: Encontre algum problema? Abra uma issue no nosso repositório.
+Sugerir novas funcionalidades: Tem alguma ideia para melhorar o site? Compartilhe conosco!
+
+## Agradecimentos
+Agradecemos a todos os colaboradores que tornaram este projeto possível.
+
+## Contato
+gabriel.ldbrito@gmail.com
