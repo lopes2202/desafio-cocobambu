@@ -2,6 +2,7 @@
 
 ## Introdução
 Seja bem vindo (a) à Clio, sua mais nova biblioteca virtual. Na Grécia antiga, Zeus teve 9 filhas, as Musas. Elas eram deusas que inspiravam os mortais nas artes e no conhecimento. Clio, no entanto, era a musa da história. E para você, leitor (a), a proposta desse acervo é facilitar a sua busca por conhecimento!
+
 Com a Clio, você pode procurar o livro da sua escolha e fornecer uma nota, sua opinião sobre o livro e também adicionar tags.
 
 ## Como Usar
@@ -24,21 +25,22 @@ Na pasta services e no arquivo google-livros.service.ts, coloque o token da sua 
 ## Funcionalidades Principais
 
 Catálogo Extenso: Navegue por um vasto catálogo de livros, organizados por nome do livro e autor.
+
 Listas de Livros: Crie suas próprias listas de livros, como "Meus Favoritos".
+
 Opção para Favoritar o Livro : Favorite o livro e adicione a nota, descreva o que você achou do livro e também pode adicionar tags para o filme.
 
 
 ## Tecnologias Utilizadas
-FrontEnd - 
-Angular
-TypeScript
-CSS
-BackEnd - Python
-Django
+FrontEnd - Angular, TypeScript, CSS
+
+BackEnd - Python, Django
 
 ## Contribuições
 Sinta-se à vontade para contribuir com este projeto! Você pode:
+
 Relatar bugs: Encontre algum problema? Abra uma issue no nosso repositório.
+
 Sugerir novas funcionalidades: Tem alguma ideia para melhorar o site? Compartilhe conosco!
 
 ## Agradecimentos
