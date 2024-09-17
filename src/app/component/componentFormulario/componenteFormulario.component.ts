@@ -4,6 +4,7 @@ import { Livro } from '../../models/livro';
 import { CommonModule } from '@angular/common';
 import { GoogleLivrosService } from '../../services/google-livros.service';
 import { Router } from '@angular/router';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-firstcomponent',
@@ -12,12 +13,17 @@ import { Router } from '@angular/router';
   templateUrl: './componenteFormulario.component.html',
   styleUrl: './componenteFormulario.component.css'
 })
-export class FirstcomponentComponent implements OnInit{
+
+
+export class ComponenteFormulario implements OnInit{
 
   private livroSelecionado = '';
 
-  constructor(private googleLivrosService: GoogleLivrosService, private router: Router) {
+  constructor(private googleLivrosService: GoogleLivrosService, private router: Router, private backendService: BackendService, 
+  ) {
   }
+
+
 
   ngOnInit(): void {
       if(!localStorage.getItem('jwt_token')){
@@ -31,9 +37,9 @@ export class FirstcomponentComponent implements OnInit{
   })
 
   formularioFavoritar = new FormGroup({
-    nota: new FormControl('nota'),
-    notas_pessoais: new FormControl('notasPessoais'),
-    tags: new FormControl('tags'),
+    nota: new FormControl('nota', [Validators.required]),
+    notas_pessoais: new FormControl('notasPessoais', [Validators.required]),
+    tags: new FormControl('tags', [Validators.required]),
   })
 
   vetor:Livro[] = [];
@@ -82,11 +88,24 @@ export class FirstcomponentComponent implements OnInit{
   }
 
   favoritar() {
-    console.log(this.formularioFavoritar.value)
+    this.backendService.favoritarLivro(
+      this.livroSelecionado,
+      parseInt(this.formularioFavoritar.value.nota),
+      this.formularioFavoritar.value.notas_pessoais,
+      [this.formularioFavoritar.value.tags]
+    ).subscribe({
+      },
+    )
     this.closeModal();
+    console.log(this.formularioFavoritar.value)
   }
+
+
+}
+  
 
   
 
-}
+
+
 

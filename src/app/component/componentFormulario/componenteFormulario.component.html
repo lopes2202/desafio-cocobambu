@@ -1,66 +1,87 @@
-<form [formGroup]="formulario">
-    @if (formulario.get('livroNome').hasError('required') && formulario.get('livroNome')) {
-    <p>O campo nome é obrigatorio</p>
-    }
+<nav>
+  <ul class="navbar">
+      <li><a href="/home" >Home</a></li>
+      <li><a href= "/livrofavoritado">Livros Favoritos</a>
+  </ul>
+</nav>
+
+  <form [formGroup]="formulario">
+
     <input type="text" formControlName="livroNome" placeholder="Nome do Livro" class="form-group">
+    <div
+      *ngIf="formulario.get('livroAutor').value && formulario.get('livroNome').touched && formulario.get('livroNome').hasError('required')">
+      <p>O campo nome é obrigatório</p>
+    </div>
 
     <input type="text" formControlName="livroAutor" placeholder="Nome do Autor" class="form-group">
-    @if (formulario.get('livroAutor').hasError('required') && formulario.get('livroAutor')) {
-    <p>O campo autor é obrigatorio</p>
-    }
-
+    <div
+      *ngIf="formulario.get('livroNome').value && formulario.get('livroAutor').touched && formulario.get('livroAutor').hasError('required')">
+      <p>O campo autor é obrigatório</p>
+    </div>
     <input type="button" value="Pesquisar" (click)="pesquisar()" class="button" [disabled]="false">
 
-</form>
+  </form>
 
-<table class="table">
+  <table class="table">
     <thead>
-        <tr>
-            <th>Capa</th>
-            <th>Livro</th>
-            <th>Autor</th>
-            <th>Descrição</th>
-            <th>Favoritar</th>
-        </tr>
+      <tr>
+        <th>Capa</th>
+        <th>Livro</th>
+        <th>Autor</th>
+        <th>Descrição</th>
+        <th>Favoritar</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let v of vetor; index as indice">
-            <td><img src="{{v.capaUrl}}" alt=""></td>
-            <td>{{v.nomeLivro}}</td>
-            <td>{{v.nomeAutor}}</td>
-            <td>{{v.descricao}}</td>
-            <td><button (click)="showModal(v.id)"> 
-                Favoritar
-              </button>
-            </td>
-            </tr>
-            </tbody>
-            </table>
-            
-            <dialog #modal>
-              <form [formGroup]="formularioFavoritar">
-                <div class="star-rating">
-                  <input type="radio" id="5-stars" formControlName="nota" value="5">
-                  <label for="5-stars" title="5 stars"></label>
-            
-                  <input type="radio" id="4-stars" formControlName="nota" value="4">
-                  <label for="4-stars" title="4 stars"></label>
-            
-                  <input type="radio" id="3-stars" formControlName="nota" value="3">
-                  <label for="3-stars" title="3 stars"></label>
-            
-                  <input type="radio" id="2-stars" formControlName="nota" value="2">
-                  <label for="2-stars" title="2 stars"></label>
-            
-                  <input type="radio" id="1-star" formControlName="nota" value="1">
-                  <label for="1-star" title="1 star"></label>
-                </div>
-            
-                <textarea formControlName="notas_pessoais" placeholder="Nota Pessoal" class="form-group"></textarea>
-                
-                <input type="text" formControlName="tags" placeholder="Tags do Livro" class="form-group">
-                <button (click)="favoritar()">Enviar</button>
-                <button class='botaoFechar' (click)="closeModal()">Fechar</button>
-              </form>
-            
-            </dialog>
+      <tr *ngFor="let v of vetor; index as indice">
+        <td><img src="{{v.capaUrl}}" alt=""></td>
+        <td>{{v.nomeLivro}}</td>
+        <td>{{v.nomeAutor}}</td>
+        <td>{{v.descricao}}</td>
+        <td><button (click)="showModal(v.id)">
+            Favoritar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <dialog #modal>
+    <form [formGroup]="formularioFavoritar" (ngSubmit)="favoritar()">
+      <div class="star-rating">
+        <input type="radio" id="5-stars" formControlName="nota" value="5" required>
+        <label for="5-stars" title="5 stars"></label>
+
+        <input type="radio" id="4-stars" formControlName="nota" value="4" required>
+        <label for="4-stars" title="4 stars"></label>
+
+        <input type="radio" id="3-stars" formControlName="nota" value="3" required>
+        <label for="3-stars" title="3 stars"></label>
+
+        <input type="radio" id="2-stars" formControlName="nota" value="2" required>
+        <label for="2-stars" title="2 stars"></label>
+
+        <input type="radio" id="1-star" formControlName="nota" value="1" required>
+        <label for="1-star" title="1 star"></label>
+      </div>
+      <div *ngIf="formularioFavoritar.get('nota')?.invalid && formularioFavoritar.get('nota')?.touched">
+        <p>A avaliação é obrigatória.</p>
+      </div>
+
+      <textarea formControlName="notas_pessoais" placeholder="Nota Pessoal" class="form-group" required=""></textarea>
+      <div
+        *ngIf="formularioFavoritar.get('notas_pessoais')?.invalid && formularioFavoritar.get('notas_pessoais')?.touched">
+        <p>O campo Nota Pessoal é obrigatório.</p>
+      </div>
+
+      <input type="text" formControlName="tags" placeholder="Tags do Livro" class="form-group" required="">
+      <div *ngIf="formularioFavoritar.get('tags')?.invalid && formularioFavoritar.get('tags')?.touched">
+        <p>O campo Tags é obrigatório.</p>
+      </div>
+
+      <button type="submit" [disabled]="formularioFavoritar.invalid">Favoritar</button>
+    </form>
+  </dialog>
+
+
