@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs';
 
@@ -33,15 +33,26 @@ export class BackendService {
     notasPessoais: string,
     tags: Array<string>
   ) {
+    const headers = new HttpHeaders({
+      "Authorization": "Bearer " + localStorage.getItem("jwt_token")
+    })
     return this.http.post<any>(
-      this.url + "livros-favoritados",  {
+      this.url + "livros-favoritados/",  {
         id_google: idLivro,
         nota: nota,
         notas_pessoais: notasPessoais,
         tags: tags 
-      }
+      }, {headers}
     )
 
   }
 
+  listarLivros(){
+    const headers = new HttpHeaders({
+      "Authorization": "Bearer " + localStorage.getItem("jwt_token")
+    })
+    return this.http.get<any>(
+      this.url + "livros-favoritados/" , {headers}
+    )
+  }
 }
