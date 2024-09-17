@@ -4,6 +4,14 @@
       <li><a href="/livrofavoritado">Livros Favoritos</a></li>
     </ul>
   </nav>
+
+  <form [formGroup]="formularioTag">
+    <input type="text" formControlName="livroTag" placeholder="Tag do Livro" class="form-group">
+    <div>
+    </div>
+    <input type="button" value="Pesquisar" (click)="listarLivros()" class="button" [disabled]="false">
+  </form>
+  
   
   <table class="table">
     <thead>
