@@ -6,5 +6,5 @@ export class Livro{
         capaUrl: string;
         nota: number;
         notasPessoais: string
-        tags: Array<string>
+        tags: Array<object>
 }
